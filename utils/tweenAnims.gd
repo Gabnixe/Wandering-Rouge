@@ -1,5 +1,3 @@
-extends Node
-
 #Collection of Tweens used to animate entities
 
 #TODO Change magic values for grid size
