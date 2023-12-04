@@ -1,10 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://duem8w6sy37m"]
+[gd_scene load_steps=3 format=3 uid="uid://duem8w6sy37m"]
 
 [ext_resource type="PackedScene" uid="uid://2h2mjhjtnnmn" path="res://entities/player/player.tscn" id="1_1lm07"]
+[ext_resource type="PackedScene" uid="uid://cd5q88puqello" path="res://ui/hud/hud.tscn" id="2_oa6jh"]
 
-[node name="game" type="Node2D"]
+[node name="root" type="Node"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)
+[node name="game" type="Node2D" parent="."]
 
-[node name="player" parent="." instance=ExtResource("1_1lm07")]
+[node name="Camera2D" type="Camera2D" parent="game"]
+zoom = Vector2(5, 5)
+
+[node name="player" parent="game" instance=ExtResource("1_1lm07")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hud" parent="CanvasLayer" instance=ExtResource("2_oa6jh")]
+offset_left = 1.0
+offset_right = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

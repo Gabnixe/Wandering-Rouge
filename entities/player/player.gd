@@ -12,11 +12,19 @@ func _ready():
 
 func _on_input_received(input : InputManager.InputType):
 	inputManager.isWaitingForInput = false;
-	if(input == InputManager.InputType.DOWN):
-		tweenAnims.playMoveTween(self,position, Vector2.DOWN, gameLoopManager.endStep)
-	if(input == InputManager.InputType.UP):
+	if(input == InputManager.InputType.ACTION_UP_LEFT):
+		tweenAnims.playMoveTween(self,position, Vector2.UP + Vector2.LEFT, gameLoopManager.endStep)
+	if(input == InputManager.InputType.ACTION_UP):
 		tweenAnims.playMoveTween(self,position, Vector2.UP, gameLoopManager.endStep)
-	if(input == InputManager.InputType.LEFT):
+	if(input == InputManager.InputType.ACTION_UP_RIGHT):
+		tweenAnims.playMoveTween(self,position, Vector2.UP + Vector2.RIGHT, gameLoopManager.endStep)
+	if(input == InputManager.InputType.ACTION_LEFT):
 		tweenAnims.playMoveTween(self,position, Vector2.LEFT, gameLoopManager.endStep)
-	if(input == InputManager.InputType.RIGHT):
+	if(input == InputManager.InputType.ACTION_RIGHT):
 		tweenAnims.playMoveTween(self,position, Vector2.RIGHT, gameLoopManager.endStep)
+	if(input == InputManager.InputType.ACTION_DOWN_LEFT):
+		tweenAnims.playMoveTween(self,position, Vector2.DOWN + Vector2.LEFT, gameLoopManager.endStep)
+	if(input == InputManager.InputType.ACTION_DOWN):
+		tweenAnims.playMoveTween(self,position, Vector2.DOWN, gameLoopManager.endStep)
+	if(input == InputManager.InputType.ACTION_DOWN_RIGHT):
+		tweenAnims.playMoveTween(self,position, Vector2.DOWN + Vector2.RIGHT, gameLoopManager.endStep)
