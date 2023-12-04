@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbbvo2xa3bxgi"]
+[gd_scene load_steps=13 format=3 uid="uid://cbbvo2xa3bxgi"]
 
 [ext_resource type="Theme" uid="uid://c72sux5055rn0" path="res://ui/hud/gameControls/gameControls.tres" id="1_we152"]
 [ext_resource type="Texture2D" uid="uid://c2120ymhfuc64" path="res://ui/hud/gameControls/gameControls.png" id="2_2kn77"]
@@ -8,35 +8,32 @@
 atlas = ExtResource("2_2kn77")
 region = Rect2(40, 0, 10, 10)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ufta"]
-load_path = "res://.godot/imported/gameControls.png-6abd7d8a84bbbc402432c661d31a084c.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ne617"]
-atlas = SubResource("CompressedTexture2D_8ufta")
+atlas = ExtResource("2_2kn77")
 region = Rect2(0, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwixs"]
-atlas = SubResource("CompressedTexture2D_8ufta")
+atlas = ExtResource("2_2kn77")
 region = Rect2(50, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8j1v"]
-atlas = SubResource("CompressedTexture2D_8ufta")
+atlas = ExtResource("2_2kn77")
 region = Rect2(20, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_inpqd"]
-atlas = SubResource("CompressedTexture2D_8ufta")
+atlas = ExtResource("2_2kn77")
 region = Rect2(80, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_87i4k"]
-atlas = SubResource("CompressedTexture2D_8ufta")
+atlas = ExtResource("2_2kn77")
 region = Rect2(10, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3tly"]
-atlas = SubResource("CompressedTexture2D_8ufta")
+atlas = ExtResource("2_2kn77")
 region = Rect2(60, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebjl4"]
-atlas = SubResource("CompressedTexture2D_8ufta")
+atlas = ExtResource("2_2kn77")
 region = Rect2(30, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cgtq"]

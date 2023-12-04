@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd5q88puqello"]
+[gd_scene load_steps=3 format=3 uid="uid://cd5q88puqello"]
 
 [ext_resource type="PackedScene" uid="uid://cbbvo2xa3bxgi" path="res://ui/hud/gameControls/gameControls.tscn" id="1_cftwr"]
+[ext_resource type="PackedScene" uid="uid://cglnf2bgn1ajd" path="res://ui/hud/gameConsole/gameConsole.tscn" id="2_ng7a5"]
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -22,6 +23,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_bottom = 0.0800018
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -38,6 +41,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_bottom = 0.0800018
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -47,26 +52,37 @@ layout_mode = 1
 anchor_top = 0.15
 anchor_right = 1.0
 anchor_bottom = 0.85
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="gameConsole" parent="gameScreen" instance=ExtResource("2_ng7a5")]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 0.511
+anchor_bottom = 1.0
+offset_top = -160.0
+offset_right = 0.0399933
+offset_bottom = -21.0
+grow_vertical = 0
+
 [node name="MarginContainer" type="MarginContainer" parent="gameScreen"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -108.0
-offset_top = -186.0
-offset_right = -36.0
-offset_bottom = -124.0
-grow_horizontal = 2
+offset_left = -180.0
+offset_top = -180.0
+offset_right = -108.0
+offset_bottom = -108.0
+grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
 theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="gameControls" parent="gameScreen/MarginContainer" instance=ExtResource("1_cftwr")]
 layout_mode = 2
@@ -75,11 +91,10 @@ size_flags_vertical = 4
 
 [node name="bottomHUD" type="Control" parent="."]
 layout_mode = 1
-anchor_top = 0.847
+anchor_top = 0.85
 anchor_right = 1.0
 anchor_bottom = 0.95
-offset_top = 0.235962
-offset_bottom = 30.396
+offset_top = -0.0800171
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -88,6 +103,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_bottom = -0.0800171
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -106,5 +123,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_bottom = -0.0800171
 grow_horizontal = 2
 grow_vertical = 2
