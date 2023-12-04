@@ -16,3 +16,7 @@ mono_crash.*.json
 
 #Temp Files
 *.tmp
+
+#Builds
+*.apk
+*.apk.idsig
