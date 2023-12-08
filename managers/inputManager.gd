@@ -18,4 +18,5 @@ func _process(_delta):
 			input_received.emit(InputType.ACTION_DOWN)
 
 func sendInput(input : InputType):
-	input_received.emit(input)
+	if(isWaitingForInput):
+		input_received.emit(input)

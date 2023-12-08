@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cglnf2bgn1ajd"]
+[gd_scene load_steps=2 format=3 uid="uid://cglnf2bgn1ajd"]
+
+[ext_resource type="Script" path="res://ui/hud/gameConsole/gameConsole.gd" id="1_naku1"]
 
 [node name="gameConsole" type="RichTextLabel"]
 anchors_preset = -1
@@ -6,11 +8,5 @@ anchor_right = 0.961
 anchor_bottom = 0.142
 offset_right = 0.039978
 offset_bottom = 0.119995
-text = "ppapdadkwaojdjoiawdiowajdosjidojsaidjawd
-asdsadas
-sdfsfsf
-sdfsdfsfdsfsd
-sdfdsfsdf
-dfdgfdg
-dfgdfgdfgd"
 scroll_active = false
+script = ExtResource("1_naku1")
