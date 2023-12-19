@@ -19,12 +19,14 @@ config/icon="res://icon.svg"
 
 InputManager="*res://managers/inputManager.gd"
 GameLoopManager="*res://managers/gameLoopManager.gd"
+ConsoleManager="*res://managers/consoleManager.gd"
 
 [display]
 
-window/size/viewport_width=648
-window/size/viewport_height=1152
-window/size/resizable=false
+window/size/viewport_width=360
+window/size/viewport_height=640
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [input]
@@ -54,3 +56,4 @@ PlayerDown={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

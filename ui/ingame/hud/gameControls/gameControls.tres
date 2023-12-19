@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c72sux5055rn0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7xu6"]
+
+[resource]
+Button/colors/icon_pressed_color = Color(0.666667, 0.666667, 0.666667, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_u7xu6")
+GridContainer/constants/h_separation = 4
+GridContainer/constants/v_separation = 3
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10

@@ -1,14 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://duem8w6sy37m"]
+[gd_scene load_steps=4 format=3 uid="uid://bv547brohtcxg"]
 
 [ext_resource type="PackedScene" uid="uid://2h2mjhjtnnmn" path="res://entities/player/player.tscn" id="1_1lm07"]
-[ext_resource type="Script" path="res://system/gameGrid/gameGrid.gd" id="2_ryubp"]
+[ext_resource type="PackedScene" uid="uid://cd5q88puqello" path="res://ui/ingame/hud/hud.tscn" id="2_oa6jh"]
+[ext_resource type="Script" path="res://systems/camera.gd" id="3_no2lb"]
 
-[node name="game" type="Node2D"]
+[node name="root" type="Node"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)
+[node name="game" type="Node2D" parent="."]
 
-[node name="player" parent="." instance=ExtResource("1_1lm07")]
+[node name="player" parent="game" instance=ExtResource("1_1lm07")]
+
+[node name="Camera2D" type="Camera2D" parent="game"]
+scale = Vector2(0.078125, 0.078125)
+offset = Vector2(5, 5)
+zoom = Vector2(5, 5)
+script = ExtResource("3_no2lb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hud" parent="CanvasLayer" instance=ExtResource("2_oa6jh")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="GameGrid" type="Node" parent="."]
 script = ExtResource("2_ryubp")

@@ -3,10 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://1fvt66wbnsyr" path="res://icon.svg" id="1_hgcn5"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="2_qmhrn"]
 
-[node name="player" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(20, -10)
+[node name="player" type="Sprite2D"]
 scale = Vector2(0.078125, 0.078125)
 texture = ExtResource("1_hgcn5")
 centered = false
