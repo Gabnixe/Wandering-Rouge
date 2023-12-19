@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv547brohtcxg"]
+[gd_scene load_steps=5 format=3 uid="uid://duem8w6sy37m"]
 
 [ext_resource type="PackedScene" uid="uid://2h2mjhjtnnmn" path="res://entities/player/player.tscn" id="1_1lm07"]
 [ext_resource type="PackedScene" uid="uid://cd5q88puqello" path="res://ui/ingame/hud/hud.tscn" id="2_oa6jh"]
+[ext_resource type="Script" path="res://system/gameGrid/gameGrid.gd" id="2_ryubp"]
 [ext_resource type="Script" path="res://systems/camera.gd" id="3_no2lb"]
 
 [node name="root" type="Node"]
