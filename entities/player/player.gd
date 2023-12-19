@@ -12,6 +12,8 @@ func _ready():
 	consoleManager = get_node("/root/ConsoleManager")
 	gameLoopManager.player = self
 	inputManager.input_received.connect(_on_input_received)
+	
+
 
 func _on_input_received(input : InputManager.InputType):
 	inputManager.isWaitingForInput = false;
@@ -39,6 +41,8 @@ func _on_input_received(input : InputManager.InputType):
 	if(input == InputManager.InputType.ACTION_DOWN_RIGHT):
 		move_player(Vector2.DOWN + Vector2.RIGHT)
 		consoleManager.sendMessage("Moved Down-Right")
+	if(input == InputManager.InputType.ACTION_WAIT):
+		gameLoopManager.endStep()
 
 func move_player(direction : Vector2):
 	tweenAnims.playMoveTween(self,position, direction, gameLoopManager.endStep)

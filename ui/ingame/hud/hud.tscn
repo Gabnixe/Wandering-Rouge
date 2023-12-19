@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd5q88puqello"]
+[gd_scene load_steps=6 format=3 uid="uid://cd5q88puqello"]
 
-[ext_resource type="PackedScene" uid="uid://cbbvo2xa3bxgi" path="res://ui/hud/gameControls/gameControls.tscn" id="1_cftwr"]
-[ext_resource type="PackedScene" uid="uid://cglnf2bgn1ajd" path="res://ui/hud/gameConsole/gameConsole.tscn" id="2_ng7a5"]
+[ext_resource type="Script" path="res://ui/ingame/hud/hud.gd" id="1_3jicb"]
+[ext_resource type="PackedScene" uid="uid://cbbvo2xa3bxgi" path="res://ui/ingame/hud/gameControls/gameControls.tscn" id="1_h4mnh"]
+[ext_resource type="PackedScene" uid="uid://cglnf2bgn1ajd" path="res://ui/ingame/hud/gameConsole/gameConsole.tscn" id="2_ymvyv"]
+[ext_resource type="PackedScene" uid="uid://c1k7ck2uhp1su" path="res://ui/ingame/menus/consoleMenu.tscn" id="3_w2wno"]
+[ext_resource type="Texture2D" uid="uid://1fvt66wbnsyr" path="res://icon.svg" id="4_wp2yh"]
 
 [node name="hud" type="Control"]
 layout_mode = 3
@@ -10,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3jicb")
 
 [node name="topSafeZone" type="Control" parent="."]
 layout_mode = 1
@@ -45,7 +49,7 @@ offset_left = -1.0
 offset_bottom = 0.0800018
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="gameScreen" type="Control" parent="."]
 layout_mode = 1
@@ -74,7 +78,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="gameControls" parent="gameScreen/MarginContainer" instance=ExtResource("1_cftwr")]
+[node name="gameControls" parent="gameScreen/MarginContainer" instance=ExtResource("1_h4mnh")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -85,16 +89,24 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -89.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="gameConsole" parent="gameScreen/MarginContainer2" instance=ExtResource("2_ng7a5")]
+[node name="gameConsole" parent="gameScreen/MarginContainer2" instance=ExtResource("2_ymvyv")]
 layout_mode = 2
-text = ""
+fit_content = true
 scroll_following = true
+
+[node name="consoleMenu" parent="gameScreen" instance=ExtResource("3_w2wno")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.003
+offset_left = 0.08
+offset_bottom = 0.0
 
 [node name="bottomHUD" type="Control" parent="."]
 layout_mode = 1
@@ -114,7 +126,19 @@ offset_left = -1.0
 offset_bottom = -0.0800171
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[node name="ChatButton" type="Button" parent="bottomHUD"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -27.04
+offset_right = 136.0
+offset_bottom = 108.96
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("4_wp2yh")
 
 [node name="bottomSafeZone" type="Control" parent="."]
 layout_mode = 1
@@ -134,3 +158,5 @@ offset_left = -1.0
 offset_bottom = -0.0800171
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="pressed" from="bottomHUD/ChatButton" to="." method="_on_chat_button_pressed"]
