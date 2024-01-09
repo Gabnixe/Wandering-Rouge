@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InputManager="*res://managers/inputManager.gd"
-GameLoopManager="*res://managers/gameLoopManager.gd"
-ConsoleManager="*res://managers/consoleManager.gd"
+InputManager="*res://backend/managers/inputManager.gd"
+GameLoopManager="*res://backend/managers/gameLoopManager.gd"
+ConsoleManager="*res://backend/managers/consoleManager.gd"
 
 [display]
 

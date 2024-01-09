@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://duem8w6sy37m"]
 
 [ext_resource type="PackedScene" uid="uid://2h2mjhjtnnmn" path="res://entities/player/player.tscn" id="1_1lm07"]
-[ext_resource type="PackedScene" uid="uid://cd5q88puqello" path="res://ui/ingame/hud/hud.tscn" id="2_oa6jh"]
-[ext_resource type="Script" path="res://system/gameGrid/gameGrid.gd" id="2_ryubp"]
-[ext_resource type="Script" path="res://systems/camera.gd" id="3_no2lb"]
+[ext_resource type="PackedScene" uid="uid://cd5q88puqello" path="res://frontend/ui/ingame/hud/hud.tscn" id="2_oa6jh"]
+[ext_resource type="Script" path="res://frontend/camera.gd" id="3_no2lb"]
+[ext_resource type="Script" path="res://backend/gameGrid.gd" id="4_whohi"]
 
 [node name="root" type="Node"]
 
@@ -24,4 +24,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="GameGrid" type="Node" parent="."]
-script = ExtResource("2_ryubp")
+script = ExtResource("4_whohi")

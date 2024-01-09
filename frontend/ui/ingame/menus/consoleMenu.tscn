@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1k7ck2uhp1su"]
 
-[ext_resource type="Script" path="res://ui/ingame/menus/consoleMenu.gd" id="1_ltssl"]
+[ext_resource type="Script" path="res://frontend/ui/ingame/menus/consoleMenu.gd" id="1_ltssl"]
 
 [node name="consoleMenu" type="Control"]
 layout_mode = 3

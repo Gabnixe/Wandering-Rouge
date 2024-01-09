@@ -11,8 +11,7 @@ func _ready():
 	gameLoopManager = get_node("/root/GameLoopManager")
 	consoleManager = get_node("/root/ConsoleManager")
 	gameLoopManager.player = self
-	inputManager.input_received.connect(_on_input_received)
-	
+	inputManager.input_received.connect(_on_input_received)	
 
 
 func _on_input_received(input : InputManager.InputType):
