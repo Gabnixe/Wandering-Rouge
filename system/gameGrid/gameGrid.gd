@@ -10,18 +10,18 @@ func _ready():
 	for n in 1:
 		gameGrid = array2D.create_array2D(gridSize.x,gridSize.y, "██")
 		var zoneRectangle = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
-		divideZoneRecursive(gameGrid,zoneRectangle)
+		divideZoneRecursive(gameGrid,zoneRectangle, 4)
 		array2D.print_array2D(gameGrid)
 		print(" ")
 		print(" ")
 		print(" ")
 		
-func divideZoneRecursive(gameGrid:Array, zone:Rect2i):
+func divideZoneRecursive(gameGrid:Array, zone:Rect2i, nbOfStep : int):
 	#If the zone is big enough to still being able to be divided
-	if(zone.size.x >= 10 && zone.size.y >= 10):
+	if(nbOfStep > 0 && zone.size.x >= 10 && zone.size.y >= 10):
 		var subZones = cutZone(zone)
-		subZones[0] = divideZoneRecursive(gameGrid,subZones[0])
-		subZones[1] = divideZoneRecursive(gameGrid,subZones[1])
+		subZones[0] = divideZoneRecursive(gameGrid,subZones[0], nbOfStep - 1)
+		subZones[1] = divideZoneRecursive(gameGrid,subZones[1], nbOfStep - 1)
 		var activeZone1 = getActiveZone(subZones[0])
 		var activeZone2 = getActiveZone(subZones[1])
 		if(subZones[2]):
@@ -32,15 +32,15 @@ func divideZoneRecursive(gameGrid:Array, zone:Rect2i):
 			var xStart : int
 			var xEnd : int
 			for x in range(activeZone1.position.x, activeZone1.position.x + activeZone1.size.x - 1):
-				if(gameGrid[x][y] == "  "):
+				if(gameGrid[x][y] == "  " || gameGrid[x][y] == "()"):
 					xStart = x
 					break
 			for x in range(activeZone2.position.x, activeZone2.position.x + activeZone2.size.x - 1):
-				if(gameGrid[x][y] == "  "):
+				if(gameGrid[x][y] == "  " || gameGrid[x][y] == "()"):
 					xEnd = x
 					break
 			for x in range(xStart, xEnd):
-				gameGrid[x][y] = "  "
+				gameGrid[x][y] = "()"
 		else:
 			var min = max(activeZone1.position.x, activeZone2.position.x)
 			var max = min(activeZone1.position.x + activeZone1.size.x - 1, activeZone2.position.x + activeZone2.size.x - 1)
@@ -49,15 +49,15 @@ func divideZoneRecursive(gameGrid:Array, zone:Rect2i):
 			var yStart : int
 			var yEnd : int
 			for y in range(activeZone1.position.y, activeZone1.position.y + activeZone1.size.y - 1):
-				if(gameGrid[x][y] == "  "):
+				if(gameGrid[x][y] == "  " || gameGrid[x][y] == "()"):
 					yStart = y
 					break
 			for y in range(activeZone2.position.y, activeZone2.position.y + activeZone2.size.y - 1):
-				if(gameGrid[x][y] == "  "):
+				if(gameGrid[x][y] == "  " || gameGrid[x][y] == "()" ):
 					yEnd = y
 					break
 			for y in range(yStart, yEnd):
-				gameGrid[x][y] = "  "
+				gameGrid[x][y] = "()"
 				
 		subZones.append(activeZone1.merge(activeZone2))
 		return subZones
@@ -94,10 +94,10 @@ func cutZone(zone:Rect2i):
 	return [zone1, zone2, zoneIsWiderThanTall]
 
 func createRoom( gameGrid:Array, zone:Rect2i ):
-	var shrinkLeft = -randi_range(1, zone.size.x / 2 - 1)
-	var shrinkTop = -randi_range(1, zone.size.y / 2 - 1)
-	var shrinkRight = -randi_range(1, zone.size.x / 2 - 1)
-	var shrinkBottom = -randi_range(1, zone.size.y / 2 - 1)
+	var shrinkLeft = -randi_range(1, min(5,zone.size.x / 2 - 1))
+	var shrinkTop = -randi_range(1, min(5,zone.size.y / 2 - 1))
+	var shrinkRight = -randi_range(1, min(5,zone.size.x / 2 - 1))
+	var shrinkBottom = -randi_range(1, min(5,zone.size.y / 2 - 1))
 	var room = zone.grow_individual(shrinkLeft, shrinkTop, shrinkRight, shrinkBottom)
 	for x in range(room.position.x, room.position.x + room.size.x):
 		for y in range(room.position.y, room.position.y + room.size.y):
