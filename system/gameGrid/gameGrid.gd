@@ -4,56 +4,81 @@ extends Node
 const array2D = preload("res://utils/array2D.gd")
 
 var gameGrid : Array
-var gridSize : Vector2i = Vector2i(20,20)
+var gridSize : Vector2i = Vector2i(50,50)
 
 func _ready():
-	for n in 10:
+	for n in 1:
 		gameGrid = array2D.create_array2D(gridSize.x,gridSize.y, "■")
-		var gridRectangle = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
-		divideGridRecursive(gameGrid,gridRectangle)
+		var zoneRectangle = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
+		divideZoneRecursive(gameGrid,zoneRectangle)
 		array2D.print_array2D(gameGrid)
 		print(" ")
 		print(" ")
 		print(" ")
 		
-func divideGridRecursive(gameGrid:Array, grid:Rect2i):
-	if(grid.size.x >= 10 && grid.size.y >= 10):
-		var subGrids = cutGrid(grid)
-		subGrids[0] = divideGridRecursive(gameGrid,subGrids[0])
-		subGrids[1] = divideGridRecursive(gameGrid,subGrids[1])
-		return subGrids
+func divideZoneRecursive(gameGrid:Array, zone:Rect2i):
+	#If the zone is big enough to still being able to be divided
+	if(zone.size.x >= 10 && zone.size.y >= 10):
+		var subZones = cutZone(zone)
+		subZones[0] = divideZoneRecursive(gameGrid,subZones[0])
+		subZones[1] = divideZoneRecursive(gameGrid,subZones[1])
+		var room0 : Rect2i = findNearestRoomRecursive(subZones[0], 0)[0]
+		var room1 : Rect2i = findNearestRoomRecursive(subZones[1], 0)[0]
+		if(subZones[2]):
+			var min = max(room0.position.y, room1.position.y)
+			var max = min(room0.position.y + room0.size.y - 1, room1.position.y + room1.size.y - 1)
+			var y = randi_range(min, max)
+			for x in range(room0.position.x + room0.size.x, room1.position.x):
+				gameGrid[x][y] = " "
+		else:
+			var min = max(room0.position.x, room1.position.x)
+			var max = min(room0.position.x + room0.size.x - 1, room1.position.x + room1.size.x - 1)
+			var x = randi_range(min, max)
+			for y in range(room0.position.y + room0.size.y, room1.position.y):
+				gameGrid[x][y] = " "
+		return subZones
+	#Create a room in the current zone
 	else:
-		createRoom(gameGrid, grid)
-		return grid
+		var room = createRoom(gameGrid, zone)
+		return {zone = zone, room = room}
 
-func cutGrid(grid:Rect2i): 
-	var grid1
-	var grid2
-	var gridIsWiderThanTall = false
-	if grid.size.x == grid.size.y:
-		gridIsWiderThanTall = randi() % 2 == 0
+func findNearestRoomRecursive(zones, distance):
+	if(zones.has("room")):
+		return [zones.room, distance + 1]
 	else:
-		gridIsWiderThanTall = grid.size.x > grid.size.y
+		var subZone0 = findNearestRoomRecursive(zones[0], distance + 1)
+		var subZone1 = findNearestRoomRecursive(zones[1], distance + 1)
+		if(subZone0[1] <= subZone1[1]):
+			return subZone0
+		else:
+			return subZone1
+
+func cutZone(zone:Rect2i): 
+	var zone1
+	var zone2
+	var zoneIsWiderThanTall = false
+	if zone.size.x == zone.size.y:
+		zoneIsWiderThanTall = randi() % 2 == 0
+	else:
+		zoneIsWiderThanTall = zone.size.x > zone.size.y
 		
-	if gridIsWiderThanTall:
-		var cutPoint = randi_range(5, grid.size.x - 5)
-		grid1 = grid.grow_side(SIDE_LEFT, -cutPoint)
-		grid2 = grid.grow_side(SIDE_RIGHT, -(grid.size.x - cutPoint))
+	if zoneIsWiderThanTall:
+		var cutPoint = randi_range(5, zone.size.x - 5)
+		zone1 = zone.grow_side(SIDE_RIGHT, -cutPoint)
+		zone2 = zone.grow_side(SIDE_LEFT, -(zone.size.x - cutPoint))
 	else:
-		var cutPoint = randi_range(5, grid.size.y - 5)
-		grid1 = grid.grow_side(SIDE_BOTTOM, -cutPoint)
-		grid2 = grid.grow_side(SIDE_TOP, -(grid.size.y - cutPoint))
-	return [grid1, grid2]
+		var cutPoint = randi_range(5, zone.size.y - 5)
+		zone1 = zone.grow_side(SIDE_BOTTOM, -cutPoint)
+		zone2 = zone.grow_side(SIDE_TOP, -(zone.size.y - cutPoint))
+	return [zone1, zone2, zoneIsWiderThanTall]
 
-func createRoom( grid:Array, zone:Rect2i ):
-	var XRoomStart = randi_range(1, zone.size.x / 2 - 1)
-	var XRoomEnd = randi_range(zone.size.x / 2 + 1, zone.size.x - 2)
-	var YRoomStart = randi_range(1, zone.size.y / 2 - 1)
-	var YRoomEnd = randi_range(zone.size.y / 2 + 1, zone.size.y - 2)
-	XRoomStart += zone.position.x
-	XRoomEnd += zone.position.x
-	YRoomStart += zone.position.y
-	YRoomEnd += zone.position.y
-	for x in range(XRoomStart,XRoomEnd + 1):
-		for y in range(YRoomStart,YRoomEnd + 1):
-			grid[x][y] = " "
+func createRoom( gameGrid:Array, zone:Rect2i ):
+	var shrinkLeft = -randi_range(1, zone.size.x / 2 - 1)
+	var shrinkTop = -randi_range(1, zone.size.y / 2 - 1)
+	var shrinkRight = -randi_range(1, zone.size.x / 2 - 1)
+	var shrinkBottom = -randi_range(1, zone.size.y / 2 - 1)
+	var room = zone.grow_individual(shrinkLeft, shrinkTop, shrinkRight, shrinkBottom)
+	for x in range(room.position.x, room.position.x + room.size.x):
+		for y in range(room.position.y, room.position.y + room.size.y):
+			gameGrid[x][y] = " "
+	return room
