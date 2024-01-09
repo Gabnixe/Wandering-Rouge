@@ -4,10 +4,10 @@ extends Node
 const array2D = preload("res://utils/array2D.gd")
 
 var gameGrid : Array
-var gridSize : Vector2i = Vector2i(50,50)
+var gridSize : Vector2i = Vector2i(20,20)
 
 func _ready():
-	for n in 1:
+	for n in 20:
 		gameGrid = array2D.create_array2D(gridSize.x,gridSize.y, "■")
 		var zoneRectangle = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
 		divideZoneRecursive(gameGrid,zoneRectangle)
@@ -22,36 +22,57 @@ func divideZoneRecursive(gameGrid:Array, zone:Rect2i):
 		var subZones = cutZone(zone)
 		subZones[0] = divideZoneRecursive(gameGrid,subZones[0])
 		subZones[1] = divideZoneRecursive(gameGrid,subZones[1])
-		var room0 : Rect2i = findNearestRoomRecursive(subZones[0], 0)[0]
-		var room1 : Rect2i = findNearestRoomRecursive(subZones[1], 0)[0]
+		var activeZone1 = getActiveZone(subZones[0])
+		var activeZone2 = getActiveZone(subZones[1])
 		if(subZones[2]):
-			var min = max(room0.position.y, room1.position.y)
-			var max = min(room0.position.y + room0.size.y - 1, room1.position.y + room1.size.y - 1)
+			var min = max(activeZone1.position.y, activeZone2.position.y)
+			var max = min(activeZone1.position.y + activeZone1.size.y - 1, activeZone2.position.y + activeZone2.size.y - 1)
 			var y = randi_range(min, max)
-			for x in range(room0.position.x + room0.size.x, room1.position.x):
+			
+			var xStart : int
+			var xEnd : int
+			for x in range(activeZone1.position.x, activeZone1.position.x + activeZone1.size.x - 1):
+				if(gameGrid[x][y] == " "):
+					xStart = x
+					break
+			for x in range(activeZone2.position.x, activeZone2.position.x + activeZone2.size.x - 1):
+				if(gameGrid[x][y] == " "):
+					xEnd = x
+					break
+			for x in range(xStart, xEnd):
 				gameGrid[x][y] = " "
 		else:
-			var min = max(room0.position.x, room1.position.x)
-			var max = min(room0.position.x + room0.size.x - 1, room1.position.x + room1.size.x - 1)
+			var min = max(activeZone1.position.x, activeZone2.position.x)
+			var max = min(activeZone1.position.x + activeZone1.size.x - 1, activeZone2.position.x + activeZone2.size.x - 1)
 			var x = randi_range(min, max)
-			for y in range(room0.position.y + room0.size.y, room1.position.y):
+			
+			var yStart : int
+			var yEnd : int
+			for y in range(activeZone1.position.y, activeZone1.position.y + activeZone1.size.y - 1):
+				if(gameGrid[x][y] == " "):
+					yStart = y
+					break
+			for y in range(activeZone2.position.y, activeZone2.position.y + activeZone2.size.y - 1):
+				if(gameGrid[x][y] == " "):
+					yEnd = y
+					break
+			for y in range(yStart, yEnd):
 				gameGrid[x][y] = " "
+				
+		subZones.append(activeZone1.merge(activeZone2))
 		return subZones
 	#Create a room in the current zone
 	else:
 		var room = createRoom(gameGrid, zone)
 		return {zone = zone, room = room}
 
-func findNearestRoomRecursive(zones, distance):
-	if(zones.has("room")):
-		return [zones.room, distance + 1]
+
+func getActiveZone(zone):
+	if(zone.has("room")):
+		return zone.room
 	else:
-		var subZone0 = findNearestRoomRecursive(zones[0], distance + 1)
-		var subZone1 = findNearestRoomRecursive(zones[1], distance + 1)
-		if(subZone0[1] <= subZone1[1]):
-			return subZone0
-		else:
-			return subZone1
+		return zone[3]
+		
 
 func cutZone(zone:Rect2i): 
 	var zone1
