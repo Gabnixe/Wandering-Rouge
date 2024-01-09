@@ -4,11 +4,11 @@ extends Node
 const array2D = preload("res://utils/array2D.gd")
 
 var gameGrid : Array
-var gridSize : Vector2i = Vector2i(20,20)
+var gridSize : Vector2i = Vector2i(50,50)
 
 func _ready():
-	for n in 20:
-		gameGrid = array2D.create_array2D(gridSize.x,gridSize.y, "■")
+	for n in 1:
+		gameGrid = array2D.create_array2D(gridSize.x,gridSize.y, "██")
 		var zoneRectangle = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
 		divideZoneRecursive(gameGrid,zoneRectangle)
 		array2D.print_array2D(gameGrid)
@@ -32,15 +32,15 @@ func divideZoneRecursive(gameGrid:Array, zone:Rect2i):
 			var xStart : int
 			var xEnd : int
 			for x in range(activeZone1.position.x, activeZone1.position.x + activeZone1.size.x - 1):
-				if(gameGrid[x][y] == " "):
+				if(gameGrid[x][y] == "  "):
 					xStart = x
 					break
 			for x in range(activeZone2.position.x, activeZone2.position.x + activeZone2.size.x - 1):
-				if(gameGrid[x][y] == " "):
+				if(gameGrid[x][y] == "  "):
 					xEnd = x
 					break
 			for x in range(xStart, xEnd):
-				gameGrid[x][y] = " "
+				gameGrid[x][y] = "  "
 		else:
 			var min = max(activeZone1.position.x, activeZone2.position.x)
 			var max = min(activeZone1.position.x + activeZone1.size.x - 1, activeZone2.position.x + activeZone2.size.x - 1)
@@ -49,15 +49,15 @@ func divideZoneRecursive(gameGrid:Array, zone:Rect2i):
 			var yStart : int
 			var yEnd : int
 			for y in range(activeZone1.position.y, activeZone1.position.y + activeZone1.size.y - 1):
-				if(gameGrid[x][y] == " "):
+				if(gameGrid[x][y] == "  "):
 					yStart = y
 					break
 			for y in range(activeZone2.position.y, activeZone2.position.y + activeZone2.size.y - 1):
-				if(gameGrid[x][y] == " "):
+				if(gameGrid[x][y] == "  "):
 					yEnd = y
 					break
 			for y in range(yStart, yEnd):
-				gameGrid[x][y] = " "
+				gameGrid[x][y] = "  "
 				
 		subZones.append(activeZone1.merge(activeZone2))
 		return subZones
@@ -101,5 +101,5 @@ func createRoom( gameGrid:Array, zone:Rect2i ):
 	var room = zone.grow_individual(shrinkLeft, shrinkTop, shrinkRight, shrinkBottom)
 	for x in range(room.position.x, room.position.x + room.size.x):
 		for y in range(room.position.y, room.position.y + room.size.y):
-			gameGrid[x][y] = " "
+			gameGrid[x][y] = "  "
 	return room

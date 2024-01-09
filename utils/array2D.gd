@@ -18,9 +18,8 @@ static func print_array2D(array2D):
 		var output = ""
 		for x in array2D.size():
 			output += str(array2D[x][y])
-			output += "	"
+			output += ""
 		print(output)
-		print()
 			
 
 
