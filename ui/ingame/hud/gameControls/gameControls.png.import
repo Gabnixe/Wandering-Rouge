@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2120ymhfuc64"
-path="res://.godot/imported/gameControls.png-b36bcb03eb48f9087f3eee361c200dfb.ctex"
+path="res://.godot/imported/gameControls.png-d9b23c8184bd1a33e4055ae7cade3b5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://frontend/ui/ingame/hud/gameControls/gameControls.png"
-dest_files=["res://.godot/imported/gameControls.png-b36bcb03eb48f9087f3eee361c200dfb.ctex"]
+source_file="res://ui/ingame/hud/gameControls/gameControls.png"
+dest_files=["res://.godot/imported/gameControls.png-d9b23c8184bd1a33e4055ae7cade3b5e.ctex"]
 
 [params]
 

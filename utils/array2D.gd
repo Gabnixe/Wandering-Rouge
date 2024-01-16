@@ -1,3 +1,5 @@
+class_name Array2D
+
 #Utility functions for 2D arrays
 static func create_array2D(width : int, height : int, fillObject = null):
 	var array2D = []

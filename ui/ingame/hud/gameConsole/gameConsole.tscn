@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cglnf2bgn1ajd"]
 
-[ext_resource type="Script" path="res://frontend/ui/ingame/hud/gameConsole/gameConsole.gd" id="1_twwbw"]
+[ext_resource type="Script" path="res://ui/ingame/hud/gameConsole/gameConsole.gd" id="1_twwbw"]
 
 [node name="gameConsole" type="RichTextLabel"]
 anchors_preset = -1

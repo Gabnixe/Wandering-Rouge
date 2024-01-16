@@ -11,15 +11,17 @@ config_version=5
 [application]
 
 config/name="Wandering Rouge"
-run/main_scene="res://game.tscn"
+run/main_scene="res://game/game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-InputManager="*res://backend/managers/inputManager.gd"
-GameLoopManager="*res://backend/managers/gameLoopManager.gd"
-ConsoleManager="*res://backend/managers/consoleManager.gd"
+InputManager="*res://game/managers/inputManager.gd"
+GameLoopManager="*res://game/managers/gameLoopManager.gd"
+ConsoleManager="*res://game/managers/consoleManager.gd"
+ActionManager="*res://game/managers/actionManager.gd"
+WorldManager="*res://game/managers/worldManager.gd"
 
 [display]
 

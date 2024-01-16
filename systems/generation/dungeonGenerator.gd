@@ -7,19 +7,19 @@ static var rng = RandomNumberGenerator.new()
 static func generate_dungeon(gridSize : Vector2i, nbOfStep : int, seed : int) :
 	rng.seed = seed
 	var grid = array2D.create_array2D(gridSize.x,gridSize.y, "██")
-	var zoneRectangle = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
-	divideZoneRecursive(grid,zoneRectangle, nbOfStep)
+	var zone = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
+	divideZoneRecursive(grid, zone, nbOfStep)
 	return grid
 		
 static func divideZoneRecursive(gameGrid:Array, zone:Rect2i, nbOfStep : int):
 	#If the zone is big enough to still being able to be divided
 	if(nbOfStep > 0 && zone.size.x >= 10 && zone.size.y >= 10):
 		var subZones = cutZone(zone)
-		subZones[0] = divideZoneRecursive(gameGrid,subZones[0], nbOfStep - 1)
-		subZones[1] = divideZoneRecursive(gameGrid,subZones[1], nbOfStep - 1)
-		var activeZone1 = getActiveZone(subZones[0])
-		var activeZone2 = getActiveZone(subZones[1])
-		if(subZones[2]):
+		subZones.zone1 = divideZoneRecursive(gameGrid, subZones.zone1, nbOfStep - 1)
+		subZones.zone2 = divideZoneRecursive(gameGrid, subZones.zone2, nbOfStep - 1)
+		var activeZone1 = getActiveZone(subZones.zone1)
+		var activeZone2 = getActiveZone(subZones.zone2)
+		if(subZones.isSeparationVertical):
 			var yMin = max(activeZone1.position.y, activeZone2.position.y)
 			var yMax = min(activeZone1.position.y + activeZone1.size.y - 1, activeZone2.position.y + activeZone2.size.y - 1)
 			var y = rng.randi_range(yMin, yMax)
@@ -54,7 +54,7 @@ static func divideZoneRecursive(gameGrid:Array, zone:Rect2i, nbOfStep : int):
 			for y in range(yStart, yEnd):
 				gameGrid[x][y] = "  "
 				
-		subZones.append(activeZone1.merge(activeZone2))
+		subZones.activeZone = activeZone1.merge(activeZone2)
 		return subZones
 	#Create a room in the current zone
 	else:
@@ -66,19 +66,19 @@ static func getActiveZone(zone):
 	if(zone.has("room")):
 		return zone.room
 	else:
-		return zone[3]
+		return zone.activeZone
 		
 
 static func cutZone(zone:Rect2i): 
 	var zone1
 	var zone2
-	var zoneIsWiderThanTall = false
+	var isSeparationVertical = false
 	if zone.size.x == zone.size.y:
-		zoneIsWiderThanTall = rng.randi() % 2 == 0
+		isSeparationVertical = rng.randi() % 2 == 0
 	else:
-		zoneIsWiderThanTall = zone.size.x > zone.size.y
+		isSeparationVertical = zone.size.x > zone.size.y
 		
-	if zoneIsWiderThanTall:
+	if isSeparationVertical:
 		var cutPoint = rng.randi_range(5, zone.size.x - 5)
 		zone1 = zone.grow_side(SIDE_RIGHT, -cutPoint)
 		zone2 = zone.grow_side(SIDE_LEFT, -(zone.size.x - cutPoint))
@@ -86,7 +86,7 @@ static func cutZone(zone:Rect2i):
 		var cutPoint = rng.randi_range(5, zone.size.y - 5)
 		zone1 = zone.grow_side(SIDE_BOTTOM, -cutPoint)
 		zone2 = zone.grow_side(SIDE_TOP, -(zone.size.y - cutPoint))
-	return [zone1, zone2, zoneIsWiderThanTall]
+	return {zone1 = zone1, zone2 = zone2, isSeparationVertical = isSeparationVertical}
 
 static func createRoom( gameGrid:Array, zone:Rect2i ):
 	var shrinkLeft = -rng.randi_range(1, min(5,zone.size.x / 2 - 1))

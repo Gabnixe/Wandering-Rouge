@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://cbbvo2xa3bxgi"]
 
-[ext_resource type="Theme" uid="uid://c72sux5055rn0" path="res://frontend/ui/ingame/hud/gameControls/gameControls.tres" id="1_we152"]
-[ext_resource type="Texture2D" uid="uid://c2120ymhfuc64" path="res://frontend/ui/ingame/hud/gameControls/gameControls.png" id="2_2kn77"]
-[ext_resource type="Script" path="res://frontend/ui/ingame/hud/gameControls/inputButton.gd" id="3_q74bk"]
+[ext_resource type="Theme" uid="uid://c72sux5055rn0" path="res://ui/ingame/hud/gameControls/gameControls.tres" id="1_we152"]
+[ext_resource type="Texture2D" uid="uid://c2120ymhfuc64" path="res://ui/ingame/hud/gameControls/gameControls.png" id="2_2kn77"]
+[ext_resource type="Script" path="res://ui/ingame/hud/gameControls/inputButton.gd" id="3_q74bk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lys81"]
 atlas = ExtResource("2_2kn77")
