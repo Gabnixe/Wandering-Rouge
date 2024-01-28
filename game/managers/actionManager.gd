@@ -8,6 +8,7 @@ var isWaitingForAction : bool = true
 
 func send_New_Action(action : ActionType):
 	if(isWaitingForAction):
-		new_action.emit(action)
 		isWaitingForAction = false
+		new_action.emit(action)
+
 	

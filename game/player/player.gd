@@ -44,4 +44,3 @@ func _on_new_action(action : ActionManager.ActionType):
 
 func move_player(direction : Vector2):
 	tweenAnims.playMoveTween(self,position, direction, gameLoopManager.end_Step)
-	gameLoopManager.camera.moveCamera(direction)

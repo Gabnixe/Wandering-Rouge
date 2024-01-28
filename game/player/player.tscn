@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://game/player/player.gd" id="2_uuyll"]
 
 [node name="player" type="Sprite2D"]
+z_index = 4
 scale = Vector2(0.078125, 0.078125)
 texture = ExtResource("1_77072")
 centered = false

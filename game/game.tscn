@@ -1,22 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://duem8w6sy37m"]
 
-[ext_resource type="PackedScene" uid="uid://2h2mjhjtnnmn" path="res://game/player/player.tscn" id="1_1lm07"]
 [ext_resource type="PackedScene" uid="uid://cd5q88puqello" path="res://ui/ingame/hud/hud.tscn" id="2_oa6jh"]
+[ext_resource type="PackedScene" uid="uid://la3od8t2mqqq" path="res://game/world/world.tscn" id="3_7lnf3"]
 [ext_resource type="Script" path="res://game/camera.gd" id="3_no2lb"]
 
 [node name="root" type="Node"]
 
 [node name="game" type="Node2D" parent="."]
 
-[node name="player" parent="game" instance=ExtResource("1_1lm07")]
-
 [node name="Camera2D" type="Camera2D" parent="game"]
 scale = Vector2(0.078125, 0.078125)
 offset = Vector2(5, 5)
 zoom = Vector2(5, 5)
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
 script = ExtResource("3_no2lb")
 
-[node name="world" type="Node" parent="game"]
+[node name="world" parent="game" instance=ExtResource("3_7lnf3")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

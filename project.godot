@@ -21,7 +21,6 @@ InputManager="*res://game/managers/inputManager.gd"
 GameLoopManager="*res://game/managers/gameLoopManager.gd"
 ConsoleManager="*res://game/managers/consoleManager.gd"
 ActionManager="*res://game/managers/actionManager.gd"
-WorldManager="*res://game/managers/worldManager.gd"
 
 [display]
 
@@ -59,3 +58,4 @@ PlayerDown={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

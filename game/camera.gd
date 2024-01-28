@@ -2,11 +2,9 @@ extends Camera2D
 
 func _ready():
 	get_node("/root/GameLoopManager").camera = self
-
-func move(newPosition: Vector2):
-	position = newPosition
-	force_update_scroll()
 	
-func moveCamera(newPosition: Vector2):
-	var tween = self.create_tween()
-	tween.tween_method(move, position, position + (newPosition * 10), 0.1)
+func _process(_delta):
+	#This looks laggy, but a fix should be added to Godot 4.3 (https://github.com/godotengine/godot/pull/84465)
+	position = get_node("/root/root/game/world/map/player").position
+	force_update_scroll()
+
