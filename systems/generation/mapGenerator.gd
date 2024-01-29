@@ -9,7 +9,6 @@ static func create_new_GameMap():
 	map.tileGrid = generatedGrid.grid
 	var playerPosition = get_random_position_in_room(get_random_room(generatedGrid.rooms))
 	print(generatedGrid.rooms)
-	map.tileGrid[playerPosition.x][playerPosition.y] = 3;
 	map.playerPosition = playerPosition
 	Array2D.print_array2D(map.tileGrid)
 	return map
