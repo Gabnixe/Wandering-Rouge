@@ -43,7 +43,7 @@ func _on_new_action(action : ActionManager.ActionType):
 		gameLoopManager.end_Step()
 
 func move_player(direction : Vector2):
-	var tile = get_node("/root/root/game/world/map").tileGrid[(position.x / 10) + direction.x][(position.y / 10) + direction.y]
+	var tile = get_node("/root/root/game/world/map").get_tile_content((position / 10) + direction)
 	if(tile == 0):
 		tweenAnims.playMoveTween(self,position, direction, gameLoopManager.end_Step)
 	else:

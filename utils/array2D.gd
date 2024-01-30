@@ -1,27 +1,56 @@
+extends RefCounted
 class_name Array2D
 
-#Utility functions for 2D arrays
-static func create_array2D(width : int, height : int, fillObject = null):
-	var array2D = []
+var _content: Array = []
 
-	for x in range(width):
-		var column = []
-		if fillObject:
-			for y in range(height):
-				column.append(fillObject)
-		else:
-			column.resize(height)
-		array2D.append(column)
+func _init():
+	_content = []
 
-	return array2D
+func get_value(position : Vector2i):
+	if(_content.size() - 1 < position.x):
+		return null
+	if(_content[position.x].size() - 1 < position.y):
+		return null
+	return _content[position.x][position.y]
 	
-static func print_array2D(array2D):
-	for y in array2D[0].size():
-		var output = ""
-		for x in array2D.size():
-			output += str(array2D[x][y])
-			output += ""
-		print(output)
-			
+func set_value(position : Vector2i, data):
+	if(_content.size() - 1 < position.x):
+		_content.resize(position.x + 1)
+	if(_content[position.x].size() - 1 < position.y):
+		for x in range(_content.size()):
+			_content[x].resize(position.y + 1)
+	_content[position.x][position.y] = data
+	
+func resize(size : Vector2i):
+	
+	if(_content.size() - 1 < size.x):
+		for i in range(_content.size(), size.x):
+			_content.append([])
+	else:
+		_content.resize(size.x)
+	for x in range(_content.size()):
+		_content[x].resize(size.y)
+	return self
+		
+func fill(data):
+	for x in range(_content.size()):
+		_content[x].fill(data)
+	return self
+	
+func size_x():
+	return _content.size()
+
+func size_y():
+	return _content[0].size()
+	
+#To print properly
+func _to_string():
+	var result : String = ""
+	for y in size_y():
+		var row = ""
+		for x in size_x():
+			row += str(_content[x][y])
+		result += row + "\n"
+	return result
 
 
