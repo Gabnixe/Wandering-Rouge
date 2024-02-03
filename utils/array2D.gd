@@ -3,9 +3,6 @@ class_name Array2D
 
 var _content: Array = []
 
-func _init():
-	_content = []
-
 func get_value(position : Vector2i):
 	if(_content.size() - 1 < position.x):
 		return null

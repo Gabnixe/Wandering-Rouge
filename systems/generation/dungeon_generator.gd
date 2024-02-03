@@ -10,10 +10,12 @@ static func generate_dungeon(gridSize : Vector2i, wallID:int, floorID:int, nbOfS
 	tileGrid.resize(gridSize).fill(wallID)
 	var zone = Rect2i(Vector2i.ZERO, Vector2i(gridSize.x, gridSize.y))
 	var zones = _divideZoneRecursive(tileGrid, floorID, zone, nbOfStep)
+	print(tileGrid)
 	#Populate Rooms
 	var rooms = _extract_rooms_from_zone_recursive(zones)
 	var playerPosition = get_random_position_in_room(get_random_room(rooms))
-	return {tileGrid = tileGrid, playerPosition = playerPosition}
+	#HACK Until entity instantiation is done properly
+	return Map.new(tileGrid, {}, {playerPosition = playerPosition}, {}, {})
 		
 #Create Rooms and Corridors		
 	

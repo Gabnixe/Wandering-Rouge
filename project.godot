@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InputManager="*res://game/managers/inputManager.gd"
-GameLoopManager="*res://game/managers/gameLoopManager.gd"
-ConsoleManager="*res://game/managers/consoleManager.gd"
-ActionManager="*res://game/managers/actionManager.gd"
+InputManager="*res://game/managers/input_manager.gd"
+GameLoopManager="*res://game/managers/game_loop_manager.gd"
+ConsoleManager="*res://game/managers/console_manager.gd"
+ActionManager="*res://game/managers/action_manager.gd"
 
 [display]
 

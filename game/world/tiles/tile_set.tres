@@ -1,15 +1,15 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c5p1pb5felihy"]
 
-[ext_resource type="Texture2D" uid="uid://ycq2wsf4k4ns" path="res://game/world/tiles/Floor.png" id="1_u0sda"]
-[ext_resource type="Texture2D" uid="uid://b5gy1s7tufels" path="res://game/world/tiles/Wall.png" id="2_pwj36"]
+[ext_resource type="Texture2D" uid="uid://ycq2wsf4k4ns" path="res://game/world/tiles/floor.png" id="1_u6xhi"]
+[ext_resource type="Texture2D" uid="uid://b5gy1s7tufels" path="res://game/world/tiles/wall.png" id="2_i5aih"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_837c7"]
-texture = ExtResource("1_u0sda")
+texture = ExtResource("1_u6xhi")
 texture_region_size = Vector2i(10, 10)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k6fdn"]
-texture = ExtResource("2_pwj36")
+texture = ExtResource("2_i5aih")
 texture_region_size = Vector2i(10, 10)
 0:0/0 = 0
 
