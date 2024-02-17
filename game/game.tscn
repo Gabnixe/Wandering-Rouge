@@ -9,10 +9,8 @@
 [node name="game" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="game"]
-scale = Vector2(0.098, 0.098)
 offset = Vector2(12, 12)
 zoom = Vector2(2, 2)
-position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 script = ExtResource("3_no2lb")
 

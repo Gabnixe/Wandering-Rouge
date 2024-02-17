@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_t102a"]
 script = ExtResource("1_smr7a")
-gridSize = Vector2i(50, 50)
-nbOfStep = 4
+gridSize = Vector2i(30, 30)
+nbOfStep = 5
 tileset = ExtResource("2_8oc5f")
 
 [resource]
