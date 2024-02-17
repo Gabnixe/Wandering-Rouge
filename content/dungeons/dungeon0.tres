@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="DungeonTemplate" load_steps=5 format=3 uid="uid://dx268r5o2jrl2"]
 
 [ext_resource type="Script" path="res://systems/generation/dungeon_level_template.gd" id="1_smr7a"]
-[ext_resource type="TileSet" uid="uid://1oapnp28x020" path="res://content/tilesets/ground_tileset.tres" id="2_8oc5f"]
+[ext_resource type="TileSet" uid="uid://1oapnp28x020" path="res://content/tilesets/temple_tileset.tres" id="2_8oc5f"]
 [ext_resource type="Script" path="res://systems/generation/dungeon_template.gd" id="3_d4lk6"]
 
 [sub_resource type="Resource" id="Resource_t102a"]

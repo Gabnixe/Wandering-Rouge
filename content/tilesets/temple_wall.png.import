@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://feqruse6fat4"
-path="res://.godot/imported/Floor.png-e5dfa4b2d19dc1952de3b0db2776ab8b.ctex"
+uid="uid://dhjrawsw3yy3x"
+path="res://.godot/imported/temple_wall.png-beee630b6eb1fb4433dcb482b42cb244.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://content/tilesets/Floor.png"
-dest_files=["res://.godot/imported/Floor.png-e5dfa4b2d19dc1952de3b0db2776ab8b.ctex"]
+source_file="res://content/tilesets/temple_wall.png"
+dest_files=["res://.godot/imported/temple_wall.png-beee630b6eb1fb4433dcb482b42cb244.ctex"]
 
 [params]
 

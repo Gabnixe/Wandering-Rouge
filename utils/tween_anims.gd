@@ -6,7 +6,7 @@ class_name TweenAnims
 
 static func playMoveTween(entity:Node2D, currentPosition:Vector2, direction:Vector2, callback):
 	var tween = entity.create_tween()
-	tween.tween_property(entity, "position", currentPosition + (direction * 10), 0.1)
+	tween.tween_property(entity, "position", currentPosition + (direction * 24), 0.1)
 	tween.finished.connect(callback)
 
 static func playPunchTween(entity:Node2D, currentPosition:Vector2, direction:Vector2, callback):
