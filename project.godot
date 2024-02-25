@@ -11,15 +11,17 @@ config_version=5
 [application]
 
 config/name="Wandering Rouge"
-run/main_scene="res://game.tscn"
+run/main_scene="res://game/game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-InputManager="*res://managers/inputManager.gd"
-GameLoopManager="*res://managers/gameLoopManager.gd"
-ConsoleManager="*res://managers/consoleManager.gd"
+InputManager="*res://game/managers/input_manager.gd"
+GameLoopManager="*res://game/managers/game_loop_manager.gd"
+ConsoleManager="*res://game/managers/console_manager.gd"
+ActionManager="*res://game/managers/action_manager.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
@@ -28,6 +30,10 @@ window/size/viewport_height=640
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg")
 
 [input]
 
@@ -57,3 +63,4 @@ PlayerDown={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

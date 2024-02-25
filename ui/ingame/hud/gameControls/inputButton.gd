@@ -1,12 +1,12 @@
 extends Button
 
-@export var buttonInput : InputManager.InputType
+@export var buttonInput : ActionManager.ActionType
 
-var inputManager : InputManager
+var actionManager : ActionManager
 
 func _ready():
-	inputManager = get_node("/root/InputManager")
+	actionManager = get_node("/root/ActionManager")
 	self.pressed.connect(_on_pressed)
 
 func _on_pressed():
-	inputManager.sendInput(buttonInput)
+	actionManager.send_New_Action(buttonInput)
